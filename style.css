@@ -1,9 +1,40 @@
-.board{
-    border-collapse: collapse;
-    margin-top: 10px;
+body{
+    background-color: lightpink;
+}
+h1 {
+    color: palevioletred;
+    text-align: center;
 }
 
-.cell{
+table {
+    margin: auto;
+}
+
+.levels{
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+    margin: 15px 0;
+}  
+
+.lives{
+  font-size: 18px;
+  text-align: center;
+  margin: 10px;
+font-family:'Press Start 2P', cursive; 
+}
+
+.newGameBtn {
+    display: block;
+    margin: 20px auto;
+}
+
+.board {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cell {
     font-size: 18px;
     line-height: 40px;
     width: 40px;
@@ -14,6 +45,14 @@
 }
 
 
-.cell.revealed{
+.cell.revealed {
     background: #ddd;
 }
+
+.num-1 { color: purple; 
+    size: 12px;
+    
+}
+.num-2 { color: green;
+    size: 12px;
+ }
