@@ -8,8 +8,19 @@
 </head>
 <body onload="onInit()">
     <h1>Mine Sweeper</h1>
-<table class="board"></table>
+    <div class="lives"></div>
 
+<table>
+    <tbody class="board"></tbody>
+</table>
+
+<div class="levels">
+  <button onclick="setLevel(4, 2)">Beginner</button>
+  <button onclick="setLevel(8, 14)">Medium</button>
+  <button onclick="setLevel(12, 32)">Expert</button>
+</div>
+    
+<button class="newGameBtn" onclick="onInit()">New Game</button>
 
 <script src="MineSweeper.js"></script>
 
