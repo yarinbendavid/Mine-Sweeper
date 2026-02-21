@@ -179,20 +179,33 @@ function onCellClicked(elCell, i, j) {
 
 
     if (cell.isMine) {
-        cell.isRevealed = true
-        renderBoard(gBoard)
+    cell.isRevealed = true
+    renderBoard(gBoard)
 
-        gGame.lives--
-        renderLives()
+    gGame.lives--
+    renderLives()
 
-        if (gGame.lives === 0) {
-            gGame.isOn = false
-            stopTimer()
-            setSmiley('lose')
-            alert('Game Over')
+    elCell.classList.add('mine-hit')
+    setTimeout(function () {
+
+        if (gGame.lives > 0) {
+            cell.isRevealed = false
+            elCell.classList.remove('mine-hit')
+            renderBoard(gBoard)
         }
-        return
+
+    }, 1000)
+
+    if (gGame.lives === 0) {
+        gGame.isOn = false
+        stopTimer()
+        setSmiley('lose')
+        playLoseSound()
+        showLoseModal()
     }
+
+    return
+}
 
     cell.isRevealed = true
     gGame.revealedCount++
@@ -222,7 +235,8 @@ function checkGameOver() {
         stopTimer()
         updateBestScoreIfNeeded()
         setSmiley('win')
-        alert('You Win!')
+        playWinSound()
+        showWinModal()
     }
 }
 
@@ -263,24 +277,6 @@ function renderLives() {
     document.querySelector('.lives').innerText = str
 }
 
-function onCellRightClick(ev, i, j) {
-    ev.preventDefault()
-
-    console.log('RIGHT CLICK', i, j)
-
-    if (!gGame.isOn) return false
-
-    var cell = gBoard[i][j]
-    if (cell.isRevealed) return false
-
-    cell.isMarked = !cell.isMarked
-    gGame.markedCount += cell.isMarked ? 1 : -1
-
-    renderBoard(gBoard)
-    checkGameOver()
-
-    return false
-}
 
 function setSmiley(state) {
     var elSmiley = document.querySelector('.smiley')
@@ -338,7 +334,7 @@ function startTimerIfNeeded() {
     gStartTime = Date.now()
     gTimerInterval = setInterval(function () {
         gGame.secsPassed = Math.floor((Date.now() - gStartTime) / 1000)
-       document.querySelector('.time-value').innerText = gGame.secsPassed
+        document.querySelector('.time-value').innerText = gGame.secsPassed
     }, 250)
 }
 
@@ -376,28 +372,57 @@ function updateBestScoreIfNeeded() {
     renderBestScore()
 }
 function onCellRightClick(ev, i, j) {
-  ev.preventDefault()
-  ev.stopPropagation()   
+    ev.preventDefault()
+    ev.stopPropagation()
 
-  if (!gGame.isOn) return false
+    if (!gGame.isOn) return false
 
-  var cell = gBoard[i][j]
-  if (cell.isRevealed) return false
+    var cell = gBoard[i][j]
+    if (cell.isRevealed) return false
 
-  cell.isMarked = !cell.isMarked
-  gGame.markedCount += cell.isMarked ? 1 : -1
+    cell.isMarked = !cell.isMarked
+    gGame.markedCount += cell.isMarked ? 1 : -1
 
-  renderBoard(gBoard)
-  checkGameOver()
+    renderBoard(gBoard)
+    checkGameOver()
 
-  return false
+    return false
 }
 
 function toggleLevels() {
-  document.querySelector('.dropdown').classList.toggle('show')
+    document.querySelector('.dropdown').classList.toggle('show')
+}
+function showWinModal() {
+    document.getElementById('winModal').style.display = 'flex'
+}
+
+function closeWinModal() {
+    document.getElementById('winModal').style.display = 'none'
+    onInit()
+}
+
+function playWinSound() {
+    var audio = document.getElementById('winSound')
+    audio.currentTime = 0
+    audio.play()
+}
+
+function playLoseSound() {
+    var audio = document.getElementById('loseSound')
+    audio.currentTime = 0
+    audio.play()
 }
 
 
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode')
+}
 
-
-
+function showLoseModal() {
+    var elModal = document.getElementById('loseModal')
+    if (elModal) elModal.style.display = 'flex'
+}
+function closeLoseModal() {
+    document.getElementById('loseModal').style.display = 'none'
+    onInit()
+}
