@@ -51,10 +51,26 @@
     </div>
 
     <button class="newGameBtn" onclick="onInit()">New Game</button>
+    <button onclick="toggleDarkMode()">Dark Mode</button>
 
     <script src="MineSweeper.js"></script>
+<div class="win-modal" id="winModal">
+  <div class="win-box">
+    <h2>🎉 You Win!</h2>
+    <button onclick="closeWinModal()">Play Again</button>
+  </div>
+</div>
 
-
+<div class="lose-modal" id="loseModal">
+  <div class="lose-box">
+    <h2>💥 Game Over!</h2>
+  <button onclick="closeLoseModal()">Try Again</button>
+  </div>
+</div>
+<audio id="winSound" src="sounds/win.wav"></audio>
+<audio id="loseSound" src="sounds/lose.wav"></audio>
 </body>
-
+<footer class="game-footer">
+  Created by Yarin Ben David
+</footer>
 </html>
