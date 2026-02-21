@@ -239,3 +239,84 @@ table {
     font-weight: 700;
     font-size: 14px;
 }
+
+.win-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.win-box{
+  background:white;
+  padding:30px 40px;
+  border-radius:16px;
+  text-align:center;
+  animation:pop 0.3s ease;
+}
+
+.win-box h2{
+  margin-bottom:20px;
+}
+
+@keyframes pop{
+  from{ transform:scale(0.8); opacity:0; }
+  to{ transform:scale(1); opacity:1; }
+}
+
+
+.dark-mode {
+    background-color: #222;
+    color: white;
+}
+
+.dark-mode .cell {
+    background-color: #444;
+    color: white;
+}
+.lose-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.lose-modal.active {
+  display: flex;
+}
+
+.lose-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.mine-hit {
+    background-color: red !important;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.game-footer {
+  margin-top: 40px;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+}
+
+.dark-mode .game-footer {
+  color: #ccc;
+}
