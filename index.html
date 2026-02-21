@@ -1,29 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mine Sweeper</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mine Sweeper</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body onload="onInit()">
-    <h1>Mine Sweeper</h1>
-    <div class="lives"></div>
+    <div class="game-wrapper">
 
-<table>
-    <tbody class="board"></tbody>
-</table>
+        <h1>Mine Sweeper</h1>
 
-<div class="levels">
-  <button onclick="setLevel(4, 2)">Beginner</button>
-  <button onclick="setLevel(8, 14)">Medium</button>
-  <button onclick="setLevel(12, 32)">Expert</button>
-</div>
-    
-<button class="newGameBtn" onclick="onInit()">New Game</button>
+        <div class="hud">
 
-<script src="MineSweeper.js"></script>
+            <div class="left">
+                <div class="dropdown">
+                    <button class="dropdown-btn" onclick="toggleLevels()">Level ▾</button>
+                    <div class="dropdown-content">
+                        <div onclick="setLevel(4,2)">Beginner</div>
+                        <div onclick="setLevel(8,14)">Medium</div>
+                        <div onclick="setLevel(12,32)">Expert</div>
+                    </div>
+                </div>
+
+                <div class="lives"></div>
+                <div class="hints"></div>
+            </div>
+
+            <button class="smiley" onclick="onSmileyClick()">😃</button>
+
+            <div class="right">
+                <span class="timer">
+                    <svg class="clock-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v6l4 2" />
+                    </svg>
+                    <span class="time-value">0</span>
+                </span>
+                <span class="best">Best: --</span>
+            </div>
+
+        </div>
+
+        <table>
+            <tbody class="board"></tbody>
+        </table>
+
+    </div>
+
+    <button class="newGameBtn" onclick="onInit()">New Game</button>
+
+    <script src="MineSweeper.js"></script>
 
 
 </body>
+
 </html>
